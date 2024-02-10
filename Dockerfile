@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 RUN apt-get update -yy
 RUN apt-get install -yy \
@@ -10,14 +10,14 @@ RUN apt-get install -yy \
 
 # Add cmake
 RUN wget -qO - https://apt.kitware.com/keys/kitware-archive-latest.asc | apt-key add -
-RUN apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
+RUN apt-add-repository 'deb https://apt.kitware.com/ubuntu/ jammy main'
 
 RUN apt-get update -yy
 RUN apt-get install -yy \
     # Install recent versions build tools, including Clang and libc++ (Clang's C++ library)
-    clang-10 \
-    libc++-10-dev \
-    libc++abi-10-dev \
+    clang-15 \
+    libc++-15-dev \
+    libc++abi-15-dev \
     cmake \
     ninja-build \
     # Install libraries for image I/O
@@ -33,8 +33,8 @@ RUN apt-get install -yy \
     git \
     python3-pip
 
-ENV CC /usr/bin/clang-10
-ENV CXX /usr/bin/clang++-10
+ENV CC /usr/bin/clang-15
+ENV CXX /usr/bin/clang++-15
 
 # Build Mitsuba
 WORKDIR /root
