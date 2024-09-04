@@ -38,13 +38,10 @@ ENV CXX /usr/bin/clang++-15
 
 # Build Mitsuba
 WORKDIR /root
-RUN git clone --recursive https://github.com/mitsuba-renderer/mitsuba3
+RUN git clone --recursive -b stable https://github.com/mitsuba-renderer/mitsuba3
 COPY .env mitsuba3
 
-WORKDIR /root/mitsuba3/
-RUN git checkout stable
-
-RUN mkdir build
+RUN mkdir /root/mitsuba3/build
 WORKDIR /root/mitsuba3/build
 RUN cmake -GNinja ..
 RUN sed -i 's/"scalar_rgb", "scalar_spectral", "cuda_ad_rgb", "llvm_ad_rgb"/"scalar_rgb", "cuda_ad_rgb"/' mitsuba.conf

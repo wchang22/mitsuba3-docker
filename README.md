@@ -7,6 +7,7 @@ First, install Docker and the [NVIDIA Container Toolkit](https://docs.nvidia.com
 Then, build the image and run
 ```bash
 docker build -t mitsuba3 .
+docker build -t mitsuba3-dev dev/ # Optionally
 docker run -it --runtime=nvidia \
     --gpus all \
     -e NVIDIA_DRIVER_CAPABILITIES=graphics,compute,utility \
